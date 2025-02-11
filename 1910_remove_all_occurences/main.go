@@ -7,5 +7,5 @@ func removeOccurrences(s string, part string) string {
 			i = -1
 		}
 	}
-	return s
+    return s
 }
