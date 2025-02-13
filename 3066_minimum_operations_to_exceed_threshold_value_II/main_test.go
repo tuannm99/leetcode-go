@@ -2,7 +2,7 @@ package main
 
 import (
 	"container/heap"
-	"fmt"
+	"testing"
 )
 
 type MinHeap []int
@@ -62,3 +62,25 @@ func max(a, b int) int {
 	}
 	return b
 }
+
+func TestMinOperations(t *testing.T) {
+	tests := []struct {
+		nums     []int
+		k        int
+		expected int
+	}{
+		{[]int{1, 2, 3, 4}, 6, 3},
+		{[]int{5, 7, 8, 10}, 12, 2},
+		{[]int{1, 1, 1, 1}, 10, -1},
+		{[]int{1, 2, 3, 4, 5}, 10, 3},
+		{[]int{1, 1, 1}, 3, 2},
+	}
+
+	for _, tt := range tests {
+		result := minOperations(tt.nums, tt.k)
+		if result != tt.expected {
+			t.Errorf("minOperations(%v, %d) = %d; want %d", tt.nums, tt.k, result, tt.expected)
+		}
+	}
+}
+

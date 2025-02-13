@@ -1,5 +1,9 @@
+package main
+
+import "testing"
+
 func maximumSum(nums []int) int {
-    // Stores the max number for each digit sum
+	// Stores the max number for each digit sum
 	digitSumMap := make(map[int]int)
 	maxSum := -1
 
@@ -24,7 +28,6 @@ func maximumSum(nums []int) int {
 	return maxSum
 }
 
-
 func digitSum(n int) int {
 	sum := 0
 	for n > 0 {
@@ -34,4 +37,22 @@ func digitSum(n int) int {
 	return sum
 }
 
+func TestMaximumSum(t *testing.T) {
+	tests := []struct {
+		nums     []int
+		expected int
+	}{
+		{[]int{4, 1, 3, 3}, 6},
+		{[]int{51, 71, 17, 42}, 93},
+		{[]int{12, 21, 33, 42}, 75},
+		{[]int{5, 25, 15, 30}, -1},
+	}
+
+	for _, tt := range tests {
+		result := maximumSum(tt.nums)
+		if result != tt.expected {
+			t.Errorf("maximumSum(%v) = %d; want %d", tt.nums, result, tt.expected)
+		}
+	}
+}
 
